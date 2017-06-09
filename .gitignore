@@ -1,0 +1,26 @@
+/********************************************************************************
+2. Реализуйте функцию, которая определяет какой порядок байт используется в
+конкретной машине ( big-endian или little-endian ).
+********************************************************************************/
+
+#define  little_endian 1  
+#define  big_endian    0  
+
+unsigned short sh=1; // в слчае распоожения байтов в ОЗУ как little_endian hex = 0x0001 
+                     // в слчае распоожения байтов в ОЗУ как big_endian hex = 0x0100 
+
+unsigned char big_endian_or_little_endian()
+{ unsigned char ch,res_ch;
+  ch=(char*)sh; 
+  
+  if(ch)res_ch=little_endian;// после приведения типов short к char в ch поместится младший байт
+     else res_ch=big_endian;
+  return  res_ch;  
+ }
+
+int main()
+{unsigned char typ_RAM;
+typ_RAM=big_endian_or_little_endian();// если typ_RAM = 1 - расположение little_endia
+                                      // если typ_RAM = 0 - расположение big_endian
+return 0;
+}
